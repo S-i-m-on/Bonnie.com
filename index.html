@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Football Predictions</title>
+</head>
+<body>
+    <h1>Football Predictions</h1>
+    <form method="POST" action="/">
+        <label for="date">Date:</label>
+        <input type="date" id="date" name="date" required><br>
+        <label for="prediction_type">Type:</label>
+        <select id="prediction_type" name="prediction_type">
+            <option value="over and under">Over and Under</option>
+            <option value="corners">Corners</option>
+            <option value="throwins">Throw-ins</option>
+            <option value="shots">Shots</option>
+            <option value="others">Others</option>
+        </select><br>
+        <label for="prediction_text">Prediction:</label>
+        <textarea id="prediction_text" name="prediction_text" required></textarea><br>
+        <button type="submit">Submit</button>
+    </form>
+
+    <h2>Select Date</h2>
+    <form method="GET" action="/select_date">
+        <input type="date" name="date" required>
+        <button type="submit">Select Date</button>
+    </form>
+
+    <h2>Pick Predictions</h2>
+    <form method="GET" action="/pick">
+        <select name="type">
+            <option value="over and under">Over and Under</option>
+            <option value="corners">Corners</option>
+            <option value="throwins">Throw-ins</option>
+            <option value="shots">Shots</option>
+            <option value="others">Others</option>
+        </select>
+        <button type="submit">Pick</button>
+    </form>
+
+    <h2>Predictions</h2>
+    <ul>
+        {% for pred in predictions %}
+            <li>{{ pred.date }} - {{ pred.type }} - {{ pred.prediction }}</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
